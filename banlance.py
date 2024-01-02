@@ -53,7 +53,7 @@ class MonitorAddress:
         if self.result == self.data:
             print(self.address[-8:] + "：Nothing have updated")
         else:
-            text = self.address[-8:] + "【Monitoring change】The latest balance:", self.result
+            text = self.address[-8:] + "【Monitoring change】", self.result
             self.data = self.result
             print(text)
             self.Notify(text)
