@@ -19,7 +19,7 @@
 
 2. 获取自己的UID
 
-<img src="C:\Users\admin.000\AppData\Roaming\Typora\typora-user-images\image-20240102230551973.png" alt="image-20240102230551973" style="zoom:33%;" />
+![e2chj3.png](https://files.catbox.moe/e2chj3.png)
 
 3. 代码中输入自己的地址和UID
 
