@@ -10,6 +10,16 @@
 
 ---
 
+### 运行环境
+
+**版本**：Python >= 3.8
+
+**所需依赖**：requests
+
+- 安装方式：`pip3 install requests`
+
+---
+
 ### 使用说明
 
 1. 关注推送渠道
@@ -19,7 +29,7 @@
 
 2. 获取自己的UID
 
-![e2chj3.png](https://files.catbox.moe/e2chj3.png)
+<img src="https://files.catbox.moe/e2chj3.png" alt="e2chj3.png" style="zoom: 25%;" />
 
 3. 代码中输入自己的地址和UID
 

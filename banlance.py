@@ -40,7 +40,7 @@ class MonitorAddress:
                     return data
             except requests.RequestException as e:
                 print(self.address[-8:] + "[Request]error:", e)
-                time.sleep(1)
+                time.sleep(3)
         return None
 
     # check the change of balance
@@ -73,7 +73,7 @@ class MonitorAddress:
     def time_check(self):
         while 1:
             self.checkChange()
-            time.sleep(5)
+            time.sleep(1800)
 
 
 if __name__ == '__main__':
