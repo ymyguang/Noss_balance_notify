@@ -30,7 +30,7 @@ class MonitorAddress:
 
     # Get_balance
     def getBalance(self):
-        i = 10
+        i = 64
         while i > 0:
             i -= 1
             try:
@@ -40,7 +40,7 @@ class MonitorAddress:
                     return data
             except requests.RequestException as e:
                 print(self.address[-8:] + "[Request]error:", e)
-                time.sleep(3)
+                time.sleep(4)
         return None
 
     # check the change of balance
