@@ -59,7 +59,7 @@ class MonitorAddress:
             self.Notify(text)
 
     def Notify(self, text):
-        url = "https://wxpusher.zjiecode.com/api/send/message/?appToken=AT_IqL2BKbwJ3VBP3UkIdah8pesiA3CwUGj&content={}&uid={}".format(
+        url = "https://wxpusher.zjiecode.com/api/send/message/?appToken=AT_q354HXyreyvPfh1rTldQmQRAYKgG2fQs&content={}&uid={}".format(
             text, self.uuid)
 
         # 发送 GET 请求
