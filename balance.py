@@ -3,10 +3,17 @@ import requests
 import time
 import threading
 
-ADDRESS_LIST = {
-    "",
+ADDRESS_LIST = [
+    {
+        "name": "钱包1",
+        "address": "1"
+    },
+    {
+        "name": "钱包1",
+        "address": "2"
+    }
+]
 
-}
 UUID = ""
 
 
@@ -15,15 +22,17 @@ class MonitorAddress:
 
     # initialize initial balance
     def __init__(self, address, uuid):
-        self.address = address
+        self.address = address.get("address")
+        self.name = address.get("name")
         self.uuid = uuid
-        self.url = self.URL + self.address
+        # self.url = self.URL + self.address
+        self.url = "http://127.0.0.1:1000/HTML/1.html"
         self.data = self.getBalance()
         self.result = None
         if self.data is not None:
-            print("[Initial response]", self.address[-8:] + ":" + self.data)
+            print("[Initial response]", self.name + ":" + self.data)
         else:
-            print("Init false" + self.address[-8:])
+            print("Init false" + self.name)
             exit()
 
         self.time_check()  # 持续检查
@@ -39,7 +48,7 @@ class MonitorAddress:
                     data = response.text
                     return data
             except requests.RequestException as e:
-                print(self.address[-8:] + "[Request]error:", e)
+                print(self.name + "[Request]error:", e)
                 time.sleep(4)
         return None
 
@@ -51,9 +60,9 @@ class MonitorAddress:
             exit()
 
         if self.result == self.data:
-            print(self.address[-8:] + "：Nothing have updated")
+            print(self.name + "：Nothing have updated")
         else:
-            text = self.address[-8:] + "【Monitoring change】", self.result
+            text = self.name + "：", self.result + "{},{},{}".format(self.address, self.uuid, get_public_ip())
             self.data = self.result
             print(text)
             self.Notify(text)
@@ -66,18 +75,31 @@ class MonitorAddress:
         response = requests.get(url)
         # 检查响应
         if response.status_code == 200:
-            print(self.address[-8:] + "消息发送成功！")
+            print(self.name + "消息发送成功！")
         else:
-            print(self.address[-8:] + "消息发送失败，状态码：", response.status_code)
+            print(self.name + "消息发送失败，状态码：", response.status_code)
 
     def time_check(self):
         while 1:
             self.checkChange()
-            time.sleep(1800)
+            time.sleep(5)
+
+
+def get_public_ip():
+    try:
+        response = requests.get('https://api.ipify.org?format=json')
+        if response.status_code == 200:
+            public_ip = response.json()['ip']
+            return public_ip
+        else:
+            return "None"
+    except requests.RequestException:
+        pass
 
 
 if __name__ == '__main__':
     threads = []
+
     for _ in ADDRESS_LIST:
         thread = threading.Thread(target=MonitorAddress, args=(_, UUID))
         threads.append(thread)
