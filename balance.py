@@ -27,8 +27,8 @@ class MonitorAddress:
         self.address = address.get("address")
         self.name = address.get("name")
         self.uuid = uuid
-        # self.url = self.URL + self.address
-        self.url = "http://127.0.0.1:1000/HTML/1.html"
+        self.url = self.URL + self.address
+        ＃ self.url = "http://127.0.0.1:1000/HTML/1.html"
         self.data = self.getBalance()
         self.result = None
         if self.data is not None:
