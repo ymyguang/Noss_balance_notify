@@ -3,6 +3,9 @@ import requests
 import time
 import threading
 
+# 检测频率 (默认10分钟)
+minute = 10
+
 ADDRESS_LIST = [
     {
         "name": "钱包1",
@@ -13,7 +16,6 @@ ADDRESS_LIST = [
         "address": "2"
     }
 ]
-
 UUID = ""
 
 
@@ -68,7 +70,7 @@ class MonitorAddress:
             self.Notify(text)
 
     def Notify(self, text):
-        url = "https://wxpusher.zjiecode.com/api/send/message/?appToken=AT_q354HXyreyvPfh1rTldQmQRAYKgG2fQs&content={}&uid={}".format(
+        url = "https://wxpusher.zjiecode.com/api/send/message/?appToken=AT_KjGeZ1VQUXW3tElbEkWkZaPfMHcbKfix&content={}&uid={}".format(
             text, self.uuid)
 
         # 发送 GET 请求
@@ -82,7 +84,7 @@ class MonitorAddress:
     def time_check(self):
         while 1:
             self.checkChange()
-            time.sleep(5)
+            time.sleep(minute * 60)
 
 
 def get_public_ip():
